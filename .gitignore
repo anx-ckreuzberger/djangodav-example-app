@@ -1,0 +1,12 @@
+*.log
+*.pot
+*.pyc
+__pycache__
+env
+.idea
+db.sqlite3
+app/uploaded_files/
+app/static_files/
+.envs/.django
+.envs/.postgres
+

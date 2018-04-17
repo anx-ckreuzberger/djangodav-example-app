@@ -1,0 +1,7 @@
+db.sqlite3
+uploaded_files
+static_files
+*.log
+*.pot
+*.pyc
+__pycache__

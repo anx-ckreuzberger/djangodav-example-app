@@ -1,0 +1,70 @@
+version: '3.2'
+volumes:
+  db_data:
+  static_files:
+  uploaded_files:
+services:
+  # Python/Django + Gunicorn
+  python:
+    build:
+      context: . # We set this context to load the app requirements when building the image
+      dockerfile: ./docker/python/Dockerfile
+    volumes:
+      # include the code of our app
+      - ./:/app
+      # include static files and uploaded files volumes
+      - static_files:/static_files
+      - uploaded_files:/uploaded_files
+    env_file:
+      - ./.envs/.gunicorn
+      - ./.envs/.django
+      - ./.envs/.postgres
+    command: /gunicorn.sh --reload
+    # command: python manage.py runserver 0.0.0.0:5000
+    # command: /gunicorn.sh
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
+    depends_on:
+      - postgres
+      - maildump
+  # nginx webserver, hosting static_files, uploaded_files, and proxying to the django app
+  nginx:
+    build:
+      context: . # We set this context to load the app requirements when building the image
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    volumes:
+      # nginx needs to access static files (readonly) and uploaded files(read+write)
+      - type: volume
+        source: static_files
+        target: /static_files
+        read_only: true
+      - uploaded_files:/uploaded_files
+    depends_on:
+      - python
+      - postgres
+      - maildump
+  # postgres db server
+  postgres:
+    image: postgres:9.4
+    expose:
+      - "5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.postgres
+  # maildump for catching all mails
+  maildump:
+    build:
+      context: ./docker/maildump
+    expose:
+      - 1025
+      - 1080
+    ports:
+      - "1080:1080"
+      - "1025:1025"
