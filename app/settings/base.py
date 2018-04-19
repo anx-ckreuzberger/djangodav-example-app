@@ -39,6 +39,8 @@ INSTALLED_APPS = [
 
     # djangodav
     'djangodav',
+    # rest_framework neeeds to be here for templates
+    'rest_framework',
 
     # example app resources
     'dbdav',

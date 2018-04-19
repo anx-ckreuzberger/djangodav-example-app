@@ -9,4 +9,4 @@ app/uploaded_files/
 app/static_files/
 .envs/.django
 .envs/.postgres
-
+venv/

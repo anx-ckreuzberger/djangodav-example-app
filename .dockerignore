@@ -1,0 +1,4 @@
+.envs/
+venv/
+app/uploaded_files/
+app/db.sqlite3

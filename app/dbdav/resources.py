@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils.timezone import now
 from djangodav.db.resources import NameLookupDBDavMixIn, BaseDBDavResource
 from djangodav.fs.resources import BaseFSDavResource
-from djangodav.views import DavView, RedirectFSException
+from djangodav.views import DavView
 
 from dbdav.models import CollectionModel, ObjectModel
 

@@ -2,7 +2,7 @@ from django.conf import settings
 
 from djangodav.base.resources import MetaEtagMixIn
 from djangodav.fs.resources import BaseFSDavResource, DummyFSDAVResource
-from djangodav.views import DavView, RedirectFSException
+from djangodav.views import DavView
 
 from djangodav.auth.rest import RestAuthViewMixIn
 
