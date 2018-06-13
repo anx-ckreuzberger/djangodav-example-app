@@ -57,6 +57,13 @@ class MyDBDavResource(NameLookupDBDavMixIn, BaseDBDavResource):
     # maybe we can use the same as for multipart uploads? StreamingRequest? Or a form?
     # ToDo: the underlying library needs support for viewable() querysets
 
+    @property
+    def collection_model_qs(self):
+        return CollectionModel.objects.all()
+
+    @property
+    def object_model_qs(self):
+        return ObjectModel.objects.all()
 
     def write(self, request, temp_file=None):
         print("Writing ... temp_file=", temp_file)
