@@ -19,7 +19,8 @@ services:
       - ./.envs/.gunicorn
       - ./.envs/.django
       - ./.envs/.postgres
-    command: /gunicorn.sh --reload
+    command: /daphne.sh
+    # command: /gunicorn.sh --reload
     # command: python manage.py runserver 0.0.0.0:5000
     # command: /gunicorn.sh
     ports:

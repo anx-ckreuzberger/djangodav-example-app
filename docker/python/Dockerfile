@@ -24,10 +24,13 @@ RUN addgroup -S django \
 COPY ./requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt \
   && pip install --no-cache-dir psycopg2-binary \
-  && pip install --no-cache-dir gunicorn
+  && pip install --no-cache-dir gunicorn daphne channels
 
 COPY ./docker/python/gunicorn.sh /gunicorn.sh
 RUN chmod +x /gunicorn.sh
+
+COPY ./docker/python/daphne.sh /daphne.sh
+RUN chmod +x /daphne.sh
 
 COPY ./docker/python/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

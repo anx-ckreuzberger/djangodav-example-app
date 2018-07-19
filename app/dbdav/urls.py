@@ -2,9 +2,9 @@ from django.conf.urls import url, include
 
 from djangodav.acls import FullAcl
 from djangodav.locks import DummyLock
+from djangodav.views import DavView
 
 from dbdav.resources import MyDBDavResource, AuthFsDavView
-
 
 urlpatterns = [
     # Mirroring tmp folder

@@ -27,6 +27,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+ASGI_APPLICATION = "example_app.routing.application"
+
+
 # Application definition
 
 INSTALLED_APPS = [

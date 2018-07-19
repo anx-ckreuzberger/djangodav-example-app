@@ -17,5 +17,5 @@ if not User.objects.filter(username='foo').exists():
 
 END
 
-# run gunicorn
-gunicorn -b 0.0.0.0:5000 example_app.wsgi --workers ${GUNICORN_WORKERS} --timeout ${GUNICORN_TIMEOUT} $*
+# run daphne
+daphne -b 0.0.0.0 -p 5000 example_app.asgi:application -v 2 --proxy-headers $*
