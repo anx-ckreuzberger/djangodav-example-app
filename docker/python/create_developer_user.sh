@@ -1,7 +1,7 @@
 #!/bin/bash
 
-files=($PWD/*) && DIR=${files[-1]}
-USER_ID=$(stat -c "%u" ${DIR})
+DIR=${PWD}
+USER_ID=$(stat -c "%u" ${PWD})
 
 echo "Using uid=${USER_ID} from owner of dir ${DIR}"
 
