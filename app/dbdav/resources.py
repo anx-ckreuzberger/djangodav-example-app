@@ -65,7 +65,7 @@ class MyDBDavResource(NameLookupDBDavMixIn, BaseDBDavResource):
     def object_model_qs(self):
         return ObjectModel.objects.all()
 
-    def write(self, request, temp_file=None):
+    def write(self, request, range_start=None, temp_file=None):
         print("Writing ... temp_file=", temp_file)
 
         if temp_file:
